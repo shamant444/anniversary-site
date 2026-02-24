@@ -26,6 +26,7 @@
       margin-bottom: 18px;
       min-height: 110px;
       line-height: 1.4;
+      z-index: 2;
     }
 
     iframe {
@@ -39,13 +40,13 @@
       z-index: 2;
     }
 
-    .heart {
+    .floating {
       position: fixed;
       top: -10px;
       animation: fall linear infinite;
-      z-index: 1;
       pointer-events: none;
-      opacity: 0.85;
+      opacity: 0.9;
+      z-index: 1;
     }
 
     @keyframes fall {
@@ -62,6 +63,7 @@
       opacity: 0;
       transition: opacity 2s ease-in;
       color: white;
+      z-index: 2;
     }
 
     .show {
@@ -74,7 +76,6 @@
 
   <h1 id="typing"></h1>
 
-  <!-- Google Drive Embedded Video -->
   <iframe 
     src="https://drive.google.com/file/d/1-x2wrubdzRAx4ZISs_Qc5aKNfolwNs1G/preview"
     allow="autoplay">
@@ -114,21 +115,25 @@
 
     typeText();
 
-    const hearts = ["❤️","💖","💘","💕","💞","💓","💗","🫶"];
+    const stickers = [
+      "❤️","💖","💕","💘","💞","💓",
+      "💑","👩‍❤️‍👨","👩‍❤️‍💋‍👨",
+      "🫂","😘","🥰","😍"
+    ];
 
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = (4 + Math.random() * 4) + "s";
-      heart.style.fontSize = (18 + Math.random() * 12) + "px";
-      document.body.appendChild(heart);
+    function createSticker() {
+      const sticker = document.createElement("div");
+      sticker.className = "floating";
+      sticker.innerText = stickers[Math.floor(Math.random() * stickers.length)];
+      sticker.style.left = Math.random() * 100 + "vw";
+      sticker.style.animationDuration = (5 + Math.random() * 5) + "s";
+      sticker.style.fontSize = (18 + Math.random() * 14) + "px";
+      document.body.appendChild(sticker);
 
-      setTimeout(() => heart.remove(), 8000);
+      setTimeout(() => sticker.remove(), 9000);
     }
 
-    setInterval(createHeart, 250);
+    setInterval(createSticker, 300);
   </script>
 
 </body>
